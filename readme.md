@@ -70,7 +70,7 @@ Incluye validaciones, tipos enumerados y una interfaz sencilla por consola.
 
 Gestión Biblioteca
 
-############################
+############################  
 1 - Crear Libro/Revista  
 2 - Crear Autor  
 3 - Asignar Autor a un Libro  
