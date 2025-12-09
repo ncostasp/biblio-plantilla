@@ -3,9 +3,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    //static ArrayList<Autor> autores = new ArrayList<>();
-    //static ArrayList<Libro> libros = new ArrayList<>();
-    //static ArrayList<Revista> revistas = new ArrayList<>();
+    static ArrayList<Autor> autores = new ArrayList<>();
+    static ArrayList<Libro> libros = new ArrayList<>();
+    static ArrayList<Revista> revistas = new ArrayList<>();
 
     public static void main(String[] args) {
         // ----------------IMPORTANTE-------------------:
@@ -44,9 +44,15 @@ public class Main {
 
                         break;
                     case 5:
+                        for (Libro libro: libros){
+                            System.out.println(libro.info());
+                        }
 
                         break;
                     case 6:
+                        for (Revista revista: revistas){
+                            System.out.println(revista.info());
+                        }
 
                         break;
                     case 7:
@@ -69,7 +75,7 @@ public class Main {
     }
 
     public static void createBD(){
-        /*
+
         // =====================
         // AUTORES
         // =====================
@@ -178,6 +184,6 @@ public class Main {
 
         libro11.setAutor(autor6);
         libro12.setAutor(autor6);
-        */
+
     }
 }
