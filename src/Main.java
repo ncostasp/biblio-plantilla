@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -30,34 +31,125 @@ public class Main {
             try {
 
                 int choice = scanner.nextInt();
+                scanner.nextLine();
                 switch (choice) {
                     case 1:
+                        System.out.println("Introduce el título: ");
+                        String titulo = scanner.nextLine();
+                        System.out.println("Introduce el año: ");
+                        int año = scanner.nextInt();
+                        scanner.nextLine();
+                        while (año > LocalDate.now().getYear()) {
+                            System.out.println("¡Año incorrecto! Introdúcelo de nuevo: ");
+                            año = scanner.nextInt();
+                            scanner.nextLine();
+                        }
+                        System.out.println("Escoge uno de estos géneros:\n" +
+                                "- FICTION\n" +
+                                "- FANTASY\n" +
+                                "- SCIENCE_FICTION\n" +
+                                "- HISTORY\n" +
+                                "- TECHNOLOGY\n" +
+                                "- BIOGRAPHY");
+                        Genero genero = Genero.valueOf(scanner.next().toUpperCase());
+                        scanner.nextLine();
+                        System.out.println("Introduce el ISBN: ");
+                        String isbn = scanner.nextLine();
+                        System.out.println("Introduce el nº de páginas: ");
+                        int paginas = scanner.nextInt();
+                        scanner.nextLine();
 
+                        Libro libroL = new Libro(titulo, año, genero, isbn, paginas);
+                        libros.add(libroL);
+                        System.out.println("CREADO. " + libroL.info());
                         break;
+
                     case 2:
-
+                        System.out.println("Introduce el título: ");
+                        String tituloR = scanner.nextLine();
+                        System.out.println("Introduce el año: ");
+                        int añoR = scanner.nextInt();
+                        scanner.nextLine();
+                        while (añoR > LocalDate.now().getYear()) {
+                            System.out.println("¡Año incorrecto! Introdúcelo de nuevo: ");
+                            añoR = scanner.nextInt();
+                            scanner.nextLine();
+                        }
+                        System.out.println("Escoge uno de estos géneros:\n" +
+                                "- FICTION\n" +
+                                "- FANTASY\n" +
+                                "- SCIENCE_FICTION\n" +
+                                "- HISTORY\n" +
+                                "- TECHNOLOGY\n" +
+                                "- BIOGRAPHY");
+                        Genero generoR = Genero.valueOf(scanner.next().toUpperCase());
+                        scanner.nextLine();
+                        System.out.println("Introduce el número: ");
+                        int numero = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.println("Introduce la frecuencia:\n" +
+                                "- WEEKLY,\n" +
+                                "- MONTHLY,\n" +
+                                "- QUARTERLY,\n" +
+                                "- ANNUAL");
+                        Frecuencia frecuencia = Frecuencia.valueOf(scanner.next().toUpperCase());
+                        scanner.nextLine();
+                        Revista revistaR = new Revista(tituloR, añoR, generoR, numero, frecuencia);
+                        revistas.add(revistaR);
+                        System.out.println("CREADA. " + revistaR.info());
                         break;
+
                     case 3:
-
+                        System.out.println("Introduce un id: ");
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.println("Introduce el nombre: ");
+                        String nombre = scanner.nextLine();
+                        System.out.println("Introduce el apellido: ");
+                        String apellido = scanner.nextLine();
+                        Autor autorA = new Autor(id, nombre, apellido);
+                        autores.add(autorA);
+                        System.out.println("CREADO. " + autorA.info());
                         break;
+
                     case 4:
-
+                        System.out.println("Escoge un libro: ");
+                        String libro4 = scanner.nextLine();
+                        System.out.println("Indica el id del autor que quieres asignarle");
+                        int autor4 = scanner.nextInt();
+                        scanner.nextLine();
+                        libro4.setAutor(autor4);
+                        System.out.println(autor4 + " asignado a " + libro4);
                         break;
+
                     case 5:
                         for (Libro libro: libros){
                             System.out.println(libro.info());
                         }
-
                         break;
+
                     case 6:
                         for (Revista revista: revistas){
                             System.out.println(revista.info());
                         }
-
                         break;
+
                     case 7:
-
+                        System.out.println("Introduce el id del autor: ");
+                        int num = scanner.nextInt();
+                        if (num <= autores.size()) {
+                            for (Autor autor : autores) {
+                                if (autor.getId() == num) {
+                                    for (Libro libro : autor.getLibros()) {
+                                        System.out.println(libro.info());
+                                    }
+                                }
+                            }
+                        } else {
+                            throw new RuntimeException("No existe el autor");
+                        }
                         break;
+
                     case 0:
                         System.out.println("Adios!");
                         System.exit(0);

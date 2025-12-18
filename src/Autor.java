@@ -47,4 +47,15 @@ public class Autor {
     public void addLibro(Libro libro) {
         libros.add(libro);
     }
+
+
+
+
+
+    public String info() {
+        return "Autor/a: " + getNombre() + " " + getApellido();
+    }
+
+
+
 }
